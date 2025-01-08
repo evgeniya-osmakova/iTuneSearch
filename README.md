@@ -24,7 +24,7 @@ Check out the live demo: [Search Media App](https://i-tune-search.vercel.app/)
 5. **Responsive Design**:
    - Fully responsive for different screen sizes, including desktops, tablets, and mobile devices.
 
-6. **Real-Time Feedback*:
+6. **Real-Time Feedback**:
    - Loading indicators and error messages enhance the user experience.
   
 

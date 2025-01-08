@@ -1,50 +1,51 @@
-# React + TypeScript + Vite
+# **Search Media App**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based web application that allows users to search for various media content, including music, movies, podcasts, audiobooks, and e-books, using the iTunes Search API.
 
-Currently, two official plugins are available:
+Check out the live demo: [Search Media App](https://i-tune-search.vercel.app/)
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## **Features**
 
-## Expanding the ESLint configuration
+1. **Search Media Content**:
+   - Users can search for media by entering a query in the search bar.
+   - Supports searching for music, movies, podcasts, audiobooks, and e-books.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. **Type Filter**:
+   - A dropdown menu allows users to filter search results by content type (e.g., Music, Movies, Podcasts).
 
-- Configure the top-level `parserOptions` property like this:
+3. **Pagination**:
+   - Results are paginated to improve performance and user experience.
+   - Navigate between pages using "Previous" and "Next" buttons.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+4. **Preview**:
+   - For music tracks and audiobooks, users can play a short preview directly within the application.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+5. **Responsive Design**:
+   - Fully responsive for different screen sizes, including desktops, tablets, and mobile devices.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+6. **Real-Time Feedback*:
+   - Loading indicators and error messages enhance the user experience.
+  
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+
+## **Installation**
+
+1. Clone the repository:
+   ```bash git clone git@github.com:evgeniya-osmakova/iTuneSearch.git```
+2. Navigate to the project directory:
+   ```cd search-media-app```
+3. Install dependencies:
+    ```npm install```
+4. Running the Application:
+   ```npm start```
+
+## **Technologies Used**
+
+- **React**: Functional components with hooks.
+- **TypeScript**: For type safety and maintainability.
+- **CSS Modules**: Modular and scoped styling.
+- **Lodash.debounce**: To optimize API requests.
+- **iTunes Search API**: Fetching media data.
+
+<img width="1339" alt="Screenshot 2025-01-08 at 12 58 17" src="https://github.com/user-attachments/assets/1da38971-18ec-4612-8afb-1862f5d4f549" />

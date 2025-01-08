@@ -1,0 +1,75 @@
+.app {
+    min-height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: var(--background-color);
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.headerTitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0 0 10px;
+    color: var(--text-color);
+}
+
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+.loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    margin-top: 20px;
+}
+
+.error {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--error-color);
+    margin-top: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.paginationButton {
+    padding: 8px 16px;
+    border: 1px solid var(--pagination-color);
+    border-radius: 4px;
+    background-color: var(--pagination-background-color);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: var(--pagination-background-color-hover);
+    }
+
+    &:disabled {
+        background-color: var(--pagination-disabled-color);
+        color: var(--pagination-background-color-disabled);
+        cursor: not-allowed;
+    }
+}
+
+.paginationInfo {
+    font-size: 1rem;
+    color: var(--text-color);
+}

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { debounce } from 'lodash';
 import styles from './SearchBar.module.css';
 
@@ -6,15 +6,17 @@ interface SearchBarProps {
     onSearch: (query: string) => void;
     onMediaTypeChange: (type: string) => void;
     mediaType: string;
+    query: string;
+    setQuery: (query: string) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
     onSearch,
     onMediaTypeChange,
     mediaType,
+    query,
+    setQuery,
 }) => {
-    const [query, setQuery] = useState('');
-
     const debouncedSearch = useCallback(
         debounce((criteria: string) => {
             if (criteria.length < 3) {

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './Card.module.css';
 
 interface CardProps {
     title: string;
+    trackId: number;
     image: string;
     type: string;
     artist: string;
     previewUrl: string | null;
+    setCurrentPlaying: (value: number | null) => void;
+    shouldPlay: boolean;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -15,7 +18,32 @@ const Card: React.FC<CardProps> = ({
     type,
     artist,
     previewUrl,
+    setCurrentPlaying,
+    trackId,
+    shouldPlay
 }) => {
+    const [wasStopped, setWasStopped] = useState(false);
+    const audio = useRef<HTMLAudioElement>(null);
+
+    useEffect(() => {
+        if (!shouldPlay) {
+            setWasStopped(true)
+            audio?.current?.pause()
+        }
+    }, [shouldPlay])
+
+    const onPlayClick = () => {
+        setCurrentPlaying(trackId)
+    }
+
+    const onPauseClick = () => {
+        if (!wasStopped) {
+            setCurrentPlaying(null)
+        }
+
+        setWasStopped(false)
+    }
+
     return (
         <div className={styles.card}>
             <img
@@ -37,8 +65,14 @@ const Card: React.FC<CardProps> = ({
             </p>
 
             {previewUrl && (
-                <audio controls className={styles.preview}>
+                <audio
+                    controls
+                    ref={audio}
+                    onPlay={onPlayClick}
+                    onPause={onPauseClick}
+                >
                     <source src={previewUrl} type="audio/mpeg" />
+
                     Your browser does not support the audio element.
                 </audio>
             )}

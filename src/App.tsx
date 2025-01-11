@@ -13,6 +13,17 @@ const App: React.FC = () => {
     const [query, setQuery] = useState('');
     const [mediaType, setMediaType] = useState('all');
     const [page, setPage] = useState(1);
+    const [isLastPage, setIsLastPage] = useState(false);
+
+    const checkNextPage = async (searchQuery: string, type: string, offset: number) => {
+        const data = await fetchMedia(searchQuery, type, 1, offset);
+
+        if (data.resultCount === 0) {
+            setIsLastPage(true);
+        } else {
+            setIsLastPage(false);
+        }
+    }
 
     const handleSearch = async (searchQuery: string, type: string, newPage = 1) => {
         const RESULTS_PER_PAGE = 10;
@@ -28,6 +39,8 @@ const App: React.FC = () => {
             setResults(data.results);
             setPage(newPage);
             setQuery(searchQuery);
+
+            await checkNextPage(searchQuery, type, newPage * RESULTS_PER_PAGE)
         } catch (err) {
             const error = isObject(err) && 'message' in err
                 ? err.message
@@ -66,6 +79,8 @@ const App: React.FC = () => {
                     onSearch={(searchQuery) => handleSearch(searchQuery, mediaType)}
                     onMediaTypeChange={handleMediaTypeChange}
                     mediaType={mediaType}
+                    query={query}
+                    setQuery={setQuery}
                 />
             </header>
 
@@ -91,8 +106,16 @@ const App: React.FC = () => {
                                 >
                                     Previous
                                 </button>
-                                <span className={styles.paginationInfo}>Page {page}</span>
-                                <button className={styles.paginationButton} onClick={handleNextPage}>
+
+                                <span className={styles.paginationInfo}>
+                                    Page {page}
+                                </span>
+
+                                <button
+                                    className={styles.paginationButton}
+                                    onClick={handleNextPage}
+                                    disabled={isLastPage}
+                                >
                                     Next
                                 </button>
                             </div>
